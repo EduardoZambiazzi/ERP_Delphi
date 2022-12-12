@@ -2,3 +2,6 @@
 *.local
 *.dsk
 *.dcu
+*.identcache
+*.skinconfig
+*.skincfg
