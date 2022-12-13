@@ -3,7 +3,7 @@ unit ConstantesSQL;
 interface
 
 const
-  sqlCriaBanco = 'create database pedidos;' ;
+  sqlCriaBanco = 'create database %s' ;
 
   sqlCriaTabelaClientes =
     ' create table clientes (  ' +

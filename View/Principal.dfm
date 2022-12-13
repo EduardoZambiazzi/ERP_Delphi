@@ -157,6 +157,7 @@ object FrmPrincipal: TFrmPrincipal
       FieldName = 'numero'
       Origin = 'numero'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qrPedidosdata_emissao: TDateTimeField
       FieldName = 'data_emissao'

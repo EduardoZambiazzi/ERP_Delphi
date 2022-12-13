@@ -146,8 +146,7 @@ end;
 
 procedure TfrmEditarPedido.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  Self := nil;
-  Action := caFree;
+  ModalResult := mrCancel;
 end;
 
 procedure TfrmEditarPedido.FormShow(Sender: TObject);
@@ -167,6 +166,7 @@ begin
 
   Operacao := toIncluir;
   editCodigo.SetFocus;
+  Application.ProcessMessages;
 end;
 
 procedure TfrmEditarPedido.NovoPedido;

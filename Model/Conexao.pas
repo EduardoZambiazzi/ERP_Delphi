@@ -40,6 +40,10 @@ type
     FFDCursor: TFDGUIxWaitCursor;
     FPastaInstalacao: string;
     FIPServidor: string;
+    FDatabase: string;
+    FUsername: string;
+    FPassword: string;
+    FPort: string;
     FConectado: boolean;
     procedure CriaConexao(pConexao: TFDConnection);
     procedure LerArquivoIni;
@@ -111,11 +115,11 @@ begin
   pConexao.TxOptions.AutoCommit := True;
   pConexao.DriverName := DriverName;
   pConexao.Params.DriverID := DriverID;
-  pConexao.Params.Values['Database'] := Database;
-  pConexao.Params.Values['User_name'] := Username;
-  pConexao.Params.Values['Password'] := Password;
+  pConexao.Params.Values['Database'] := FDatabase;
+  pConexao.Params.Values['User_name'] := FUsername;
+  pConexao.Params.Values['Password'] := FPassword;
   pConexao.Params.Values['Server'] := FIPServidor;
-  pConexao.Params.Values['Port'] := Port;
+  pConexao.Params.Values['Port'] := FPort;
 end;
 
 procedure TConexaoBanco.LerArquivoIni;
@@ -123,8 +127,12 @@ var
   Ini: TIniFile;
 begin
   try
-    Ini := TIniFile.Create(FPastaInstalacao + 'banco.ini');
-    FIPServidor := Ini.ReadString('banco', 'server', ServerPadrao);
+    Ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) + 'banco.ini');
+    FIPServidor := Ini.ReadString('Banco', 'server', ServerPadrao);
+    FPassword := Ini.ReadString('Banco', 'password', 'root');
+    FUsername := Ini.ReadString('Banco', 'username', '');
+    FDatabase := Ini.ReadString('Banco', 'database', '');
+    FPort := Ini.ReadString('Banco', 'port', '3306');
   finally
     FreeAndNil(Ini);
   end;
@@ -164,11 +172,11 @@ begin
 
   pConexao.Params.Values['Database'] := '';
   FDCommand.Connection := pConexao;
-  FDCommand.CommandText.Text := sqlCriaBanco;
+  FDCommand.CommandText.Text := Format(sqlCriaBanco, [FDatabase]);
 
   try
     FDCommand.Active := True;
-    pConexao.Params.Values['Database'] := Database;
+    pConexao.Params.Values['Database'] := FDatabase;
     pConexao.Connected := True;
     CriaTabelasBanco;
     Result := True;

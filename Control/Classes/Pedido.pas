@@ -140,7 +140,7 @@ begin
   ConexaoDB.PostSQL(Query);
 
   Query.Close;
-  for var I := 0 to pPedido.FPedidosLista.Count-1 do
+  for var I := 0 to pPedido.FProdutos.Count-1 do
   begin
     var UltimoPedido := TPedidoGeral.Create;
     CarregarUltimoPedido(UltimoPedido);

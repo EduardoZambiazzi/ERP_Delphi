@@ -3,10 +3,6 @@ unit Constantes;
 interface
 
 const
-  Database = 'pedidos';
-  Username = 'root';
-  Password = '';
-  Port = '3306';
   DriverID = 'MySQL';
   DriverName = 'MySQL';
   ServerPadrao = '127.0.0.1';

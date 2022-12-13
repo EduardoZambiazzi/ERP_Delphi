@@ -89,6 +89,7 @@ begin
   frm.ShowModal;
 
   FreeAndNil(frm);
+  Pedidos.Produtos.Clear;
   qrPedidos.Refresh;
 end;
 

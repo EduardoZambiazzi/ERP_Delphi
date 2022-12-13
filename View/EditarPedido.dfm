@@ -13,6 +13,7 @@ object frmEditarPedido: TfrmEditarPedido
   Font.Style = []
   Position = poOwnerFormCenter
   WindowState = wsMaximized
+  OnClose = FormClose
   OnShow = FormShow
   TextHeight = 15
   object pnCliente: TPanel
